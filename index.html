@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Natascha Haberl">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even / Odd</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        let wins = 0;
+        let losses = 0;
+        let playerName = prompt(`Please enter your name: `);
+
+        //validation loop to ensure the name isn't empty
+        while (!playerName) {
+            playerName = prompt(`Invalid input. Please enter your name: `);
+        }
+        alert(`Welcome to even or odd! You get to guess if the computer chose an even or odd number!`);
+
+        //using do-while loop so player plays through game at least once before deciding to play again
+        do {
+            let computerChoice;
+            let winLose = "";
+            let playerChoice = prompt(`Please type in either 'even' or 'odd'`);
+            playerChoice = playerChoice.toLowerCase();
+
+            //count to 3, then randomly selecting 2 numbers between 1 and 4, inclusively
+            alert("1");
+            alert("2");
+            alert("3");
+            let firstRandom = Math.floor(Math.random() * 4) + 1;
+            let secondRandom = Math.floor(Math.random() * 4) + 1;
+            let sum = firstRandom + secondRandom;
+
+            //utilizing ternary operator and modulus to determine if the computer's number is odd or even
+            sum % 2 === 0 ? computerChoice = "even" : computerChoice = "odd";
+
+            //switch statement to determine which outcome is true
+            switch (true) {
+                case playerChoice === computerChoice:
+                    wins++
+                    winLose = "win";
+                    break;
+                case playerChoice !== computerChoice:
+                    losses++;
+                    winLose = "lose";
+                    break;
+                default:
+                    break;
+            }
+
+            //using string interpolation and ternary operators to change whether wins or losses is plural in the output based on how many wins/losses there are
+            playAgain = prompt(`${playerName}, you chose ${playerChoice}, the sum was ${sum} which is an ${computerChoice} number, you ${winLose}.\nThat's ${wins} ${(wins === 1 ? "win":"wins")} and ${losses} ${(losses === 1 ? "loss":"losses")}!\nWould you like to play again? y/n`)
+        } while (playAgain.toLowerCase() === "y")
+
+    </script>
+</body>
+
+</html>
